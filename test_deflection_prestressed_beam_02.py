@@ -120,7 +120,6 @@ prestressingSteel= tm.defCableMaterial(preprocessor=prep, name="prestressingStee
 #Meshing
 for l in tendonSet.getLines:
     l.nDiv=nDivLines
-corCooTr=modelSpace.newLinearCrdTransf(trfName='corCooTr',xzVector=xc.Vector([1,0,0]))
 tendon_mesh=fem.LinSetToMesh(linSet=tendonSet,matSect=prestressingSteel,elemSize=None,vDirLAxZ=xc.Vector([1,0,0]),elemType='Truss',dimElemSpace=3,coordTransfType=None)
 tendon_mesh.generateMesh(prep)
 for e in tendonSet.getElements:
@@ -155,7 +154,9 @@ casos.currentLoadPattern='0'
 casos.addToDomain('0')
 
 for e in tendonSet.getElements:
-    e.getMaterial().prestress=fps
+    tendonMat= e.getMaterial()
+    tendonMat.prestress= fps
+    e.update() #Update element state according with the new prestress
 
 analisis= predefined_solutions.simple_static_linear(FEcase)
 analOk= analisis.analyze(1)
