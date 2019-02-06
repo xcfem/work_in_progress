@@ -136,7 +136,6 @@ for n1,n2 in zip(beamLines[1].getNodes(),tendonLines[1].getNodes()):
 for n1,n2 in zip(beamLines[2].getNodes(),tendonLines[2].getNodes()):
     modelSpace.constraints.newEqualDOF(n1.tag,n2.tag,xc.ID(gluedDOFs))
 
-
 '''
 #Plot
 from postprocess.xcVtk.FE_model import vtk_FE_graphic
@@ -145,25 +144,30 @@ defDisplay.displayMesh(xcSets=[beamSet,tendonSet],fName= None,caption='Mesh',nod
 '''
 # Loads definition
 cargas= prep.getLoadHandler
-casos= cargas.getLoadPatterns
+lPatterns= cargas.getLoadPatterns
 #Load modulation.
-ts= casos.newTimeSeries("constant_ts","ts")
-casos.currentTimeSeries= "ts"
+ts= lPatterns.newTimeSeries("constant_ts","ts")
+lPatterns.currentTimeSeries= "ts"
 #Load case definition
-lp0= casos.newLoadPattern("default","0")
-casos.currentLoadPattern='0'
-#We add the load case to domain.
-casos.addToDomain('0')
+lp0= lPatterns.newLoadPattern("default","0")
+lPatterns.currentLoadPattern='0'
+# #We add the load case to domain.
+lPatterns.addToDomain('0') # THE ERROR IS HERE (WE ADD TO DOMAIN TOO EARLY)
+print 'AAAAAAAAAAAAAAAAAAAA'
 
 strain=(fps-fpi)/Ep
 for e in tendonSet.getElements:
     eLoad= lp0.newElementalLoad("truss_temp_load")
     eLoad.elementTags= xc.ID([e.tag])
-    eLoad.eps1=strain
-    eLoad.eps2=strain
+    eLoad.eps1= strain
+    eLoad.eps2= strain
+print 'BBBBBBBBBBBBBBBBBBBBBBBBBB'
+#We add the load case to domain.
+#lPatterns.addToDomain('0') #THE SOLUTION IS HERE
 
 analisis= predefined_solutions.simple_static_linear(FEcase)
 analOk= analisis.analyze(1)
+print 'CCCCCCCCCCCCCCCCCCCCCCCCCCCCC'
 
 from postprocess.xcVtk.FE_model import quick_graphics as QGrph
 from postprocess.xcVtk import vtk_graphic_base
