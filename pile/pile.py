@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 ###########################################################
 #                                                         #
 # Static pushover of a single pile, modeled as a beam on  #
@@ -15,6 +16,10 @@
 # ---> Basic units are kN and meters                      #
 #                                                         #
 ###########################################################
+
+import xc_base
+import geom
+import xc
 
 #----------------------------------------------------------
 #  pile geometry and mesh
@@ -38,30 +43,33 @@ nNodePile= 1+nElePile
 #  create spring nodes
 #----------------------------------------------------------
 
+feProblem= xc.FEProblem()
+preprocessor=  feProblem.getPreprocessor
+nodes= preprocessor.getNodeHandler
 # spring nodes created with 3 dim, 3 dof
-model.BasicBuilder(-ndm(3, -ndf(3)
+modelSpace= predefined_spaces.PredefinedSpace(nodes,3,3)
 
 # counter to determine number of embedded nodes
 count = 0
 
 # create spring nodes
 for i in range(1, nNodePile+1):
-zCoord = eleSize*(i-1)
-# only create spring nodes over embedded length of pile
-if.zCoord.<=.L2node.i(0.00, 0.00, zCoord)
-node.i+100.0.00, 0.00, zCoord()
-count = count+1
- 
- 
+  zCoord = eleSize*(i-1)
+  # only create spring nodes over embedded length of pile
+  if(zCoord<=L2):
+      nA= nodes.newNodeIDXYZ(i, 0.00, 0.00, zCoord)
+      nB= nodes.newNodeIDXYZ(i+100, 0.00, 0.00, zCoord)
+      count+= 1
+
 
 # number of embedded nodes
-nNodeEmbed = count()
+nNodeEmbed= count
 
 
 # spring node fixities
 for i in range(1, nNodeEmbed+1):
-fix.i(1, 1, 1)
-fix.i+100.0, 1, 1 
+  fix.i(1, 1, 1)
+  fix.i+100.0, 1, 1 
 
 #----------------------------------------------------------
 #  soil properties
