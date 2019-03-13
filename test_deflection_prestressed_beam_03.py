@@ -153,7 +153,6 @@ lp0= lPatterns.newLoadPattern("default","0")
 lPatterns.currentLoadPattern='0'
 # #We add the load case to domain.
 lPatterns.addToDomain('0') # THE ERROR IS HERE (WE ADD TO DOMAIN TOO EARLY)
-print 'AAAAAAAAAAAAAAAAAAAA'
 
 strain=(fps-fpi)/Ep
 for e in tendonSet.getElements:
@@ -161,7 +160,6 @@ for e in tendonSet.getElements:
     eLoad.elementTags= xc.ID([e.tag])
     eLoad.eps1= strain
     eLoad.eps2= strain
-print 'BBBBBBBBBBBBBBBBBBBBBBBBBB'
 #We add the load case to domain.
 #lPatterns.addToDomain('0') #THE SOLUTION IS HERE
 
