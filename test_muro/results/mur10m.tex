@@ -1,0 +1,87 @@
+\begin{table}
+\begin{center}
+\begin{tabular}[H]{|l|}
+\hline
+\multicolumn{1}{|c|}{\textsc{mur10m}}\\
+\hline
+\begin{tabular}{c|l}
+\begin{minipage}{85mm}
+\vspace{2mm}
+\begin{center}
+\includegraphics[width=80mm]{mur10m}
+\end{center}
+\vspace{1pt}
+\end{minipage} & 
+\begin{tabular}{l}
+\textsc{Wall geometry}\\
+Stem top thickness: \\
+$b_{top}= 0.40\ m$\\
+Stem height: \\
+$h_{stem}= 10.39\ m$\\
+Stem bottom thickness: \\
+$b_{bottom}= 1.44\ m$\\
+Footing thickness: \\
+$b_{footing}= 1.85\ m$\\
+\end{tabular} \\
+\end{tabular} \\
+\hline
+\begin{tabular}{llll}
+\multicolumn{3}{c}{\textsc{Materials}}\\
+  Concrete: C30-37 &   Steel: B500S &   Concrete cover: 35 mm\\
+\end{tabular} \\
+\hline
+\end{tabular}
+\caption{Wall materials and dimensions mur10m} \label{tb_def_mur10m}
+\end{center}
+\end{table}
+\begin{center}
+\begin{tabular}[H]{|l|c|c|c|}
+\hline
+\multicolumn{4}{|c|}{\textsc{wall: mur10m stability check}}\\
+\hline
+Vérification:  & $F_{avail}$ & $F_{req}$ & Combination\\
+\hline
+Overturning:  & 8.14 & 1.00 & ULS06\\
+Sliding:  & 1.87 & 1.00 & ULS03\\
+Bearing capacity:  & 0.49 & 1.00 & ULS04\\
+Adm. pressure:  & 0.84 & 1.00 & ULS04\\
+\hline
+\multicolumn{4}{|l|}{$F_{avail.}$: available security.}\\
+\multicolumn{4}{|l|}{$F_{req}$: required security.}\\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}[H]{|l|c|c|c|}
+\hline
+\multicolumn{3}{|c|}{\textsc{Wall: mur10m rotation check}}\\
+\hline
+$\beta_{avail} (\permil)$ & $\beta_{req}(\permil)$ & Combination\\
+\hline
+0.27 & 2.00 & SLS01\\
+\hline
+\multicolumn{3}{|l|}{$\beta_{avail}$: wall maximum computed rotation.}\\
+\multicolumn{3}{|l|}{$\beta_{req}$: wall maximum admissible rotation.}\\
+\hline
+\end{tabular}
+\end{center}
+\bottomcaption{Wall mur10m reinforcement} \label{tb_mur10m}
+\tablefirsthead{\hline
+\multicolumn{1}{|c|}{\textsc{mur10m wall reinforcement}}\\\hline
+}
+\tablehead{\hline
+\multicolumn{1}{|c|}{\textsc{mur10m (suite)}}\\\hline
+}
+\tabletail{\hline \multicolumn{1}{|r|}{../..}\\\hline}
+\tablelasttail{\hline}
+\begin{center}
+\begin{supertabular}[H]{|l|}
+\hline
+\textbf{Reinforcement 1 (outside reinforcement dowels) :} \\
+  RC section dimensions; b= 1.00 m, h= 1.44 m\\
+  diam: 25 mm, spacing: 100 mm  reinf. development L=113.75 m (4550 diameters).\\
+  area: As=  49.09 cm2/m areaMin:  25.91 cm2/m  F(As)= 1.89 OK!\\
+  Bending check: Md= 1294.36 kN m, MR= 2673.19kN m  F(M)= 2.07 OK!\\
+  Shear check: Vd= 377.38 kN,  VR= 924.73 kN  F(V)= 2.45 OK!\\
+  Stress check: M= 1294.36 kN m, $\sigma_s$= 203.57 MPa\\
+    $\sigma_{lim}$= 230.00 MPa  F($\sigma_s$)= 1.13 OK!\\
